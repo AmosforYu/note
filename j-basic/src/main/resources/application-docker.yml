@@ -1,0 +1,12 @@
+logging:
+  config: classpath:logback-docker.xml
+
+xzboss:
+  oppfUrl: http://221.176.64.64:19200/oppf
+  getToken : http://221.176.64.64:19300/aopoauth/oauth/token
+  appId : 501260
+  appKey : 89d98e6ed5bf564642ac0d95b720047b
+  opId : 90025014
+  orgId : 911001072
+  regionCode : 891
+  countyCode : 1001

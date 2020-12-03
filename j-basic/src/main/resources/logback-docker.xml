@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<configuration>  
+  
+    <!-- ch.qos.logback.core.ConsoleAppender 控制台输出 -->  
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">  
+        <encoder>  
+            <pattern>[%d{yyyy/MM/dd HH:mm:ss:SSS}][yq-mod-boss-xz][%t][%c:%L] %m%n
+            </pattern>  
+        </encoder>  
+    </appender>
+    
+    <logger name="com.cmcc" additivity="false">  
+	    <level value="debug" />  
+	    <appender-ref ref="console" />
+	</logger>
+  
+    <!-- 日志级别 -->  
+    <root>  
+        <level value="info" />  
+        <appender-ref ref="console" />  
+    </root>  
+  
+  
+</configuration>   

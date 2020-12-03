@@ -1,0 +1,60 @@
+spring:
+  profiles:
+    active: dev_fy
+
+  datasource:
+    url: jdbc:mysql://mysql.hjgh.svc.cluster.local:3306/fy_boss?autoReconnect=true&allowMultiQueries=true
+    username: fy_user
+    password: sw1KNlGx
+    # 使用druid数据源
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    filters: stat
+    maxActive: 300
+    initialSize: 5
+    maxWait: 60000
+    minIdle: 5
+    removeAbandoned: false
+    removeAbandonedTimeout: 180
+    logAbandoned: true
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 600000
+    validationQuery: select 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 20
+
+  redis:
+    host: redis.hjgh.svc.cluster.local
+    port: 6379
+    pool:
+      max-active: 300
+      max-wait: 500
+      max-idle: 300
+      min-idle: 5
+    testOnBorrow: false
+    testOnReturn: false
+    password: gir##AcX
+
+mode:
+  debug: false
+
+#mybatis:
+#  typeAliasesPackage: com.cmcc.hygcc.entity
+#  mapperLocations: com/cmcc/hygcc/persistence/mapping/*.xml
+
+xzboss:
+  #查询宽带信息
+  queryBroadInfo : CRM_TO_HSOP_QUERY_BROADINFO_001
+  #查询可以复用的固话号码
+  queryAccessNum : CRM_TO_HSOP_QUERY_IMS_ACCESSNUM_001
+  #查询已开通的IMS信息
+  queryImsInfo : CRM_TO_HSOP_QUERY_HASOPEN_IMSNUM_001
+  #开户选号
+  getImsNums : CRM_TO_HSOP_QUERY_OPEN_IMSNUM_001
+  #开通业务
+  openBroadband : CRM_TO_HSOP_OPEN_IMS_BROADBAND_001
+  #退订业务
+  destoryBroadband : CRM_TO_HSOP_DESTORY_IMS_BROADBAND_001
