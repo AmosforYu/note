@@ -10,7 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @author: Mr.Yu
  * @date: 2020-08-26 10:39
  **/
-public class SetsTestCla {
+public class CollectionsTestCla {
 
     public static void main(String[] args) {
         //============LinkedList==============\\
