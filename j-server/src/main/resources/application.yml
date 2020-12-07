@@ -1,0 +1,42 @@
+spring:
+  application:
+    name: cloud-server
+
+server:
+  port: 3300
+
+---
+#spring:
+#  profiles: server01 ###spingboot2.0弃用该写法，为了提升对 Kubernetes 的原生支持而作的修改
+spring:
+  config:
+    activate:
+      on-profile: server01
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
+    hostname: ${spring.application.name}
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      default-zone: http://server02.cluster.local:4000/eureka/
+
+---
+spring:
+  config:
+    activate:
+      on-profile: server02
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring-amqp.application.name}:${spring.cloud.client.ip-address}:${server.port}
+    hostname: ${spring-amqp.application.name}
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      default-zone: http://server01.cluster.local:4000/eureka/

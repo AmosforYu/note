@@ -1,6 +1,7 @@
 server:
   port: 3300
-  contextPath: /hy/learn/basic
+  servlet:
+    context-path: /hy/learn/basic
 
 spring:
   application:
@@ -8,12 +9,12 @@ spring:
 
 euerka:
   instance:
-    preferIpAddress: true
+    prefer-ip-address: true
     instance-id: ${spring.cloud.client.ipAddress}:${spring.application.name}:${server.port}
     hostname: ${spring.cloud.client.ipAddress}
   client:
     serviceUrl:
-      defaultZone: http://hy-service01.learn.svc.cluster.local:3000/eureka/
+      defaultZone: http://server01.cluster.local:4000/eureka/,http://server02.cluster.local:4000/eureka/
 
 hystrix:
   command:

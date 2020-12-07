@@ -1,6 +1,8 @@
 package com.yyb.learn.jbasic.service;
 
 import com.yyb.learn.jbasic.dao.WebDao;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +13,8 @@ import org.springframework.stereotype.Service;
  **/
 @Service
 public class WebService {
+    private static final Logger LOG = LoggerFactory.getLogger(WebService.class);
+
     @Autowired
     private WebDao webDao;
 }

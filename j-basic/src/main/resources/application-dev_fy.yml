@@ -6,13 +6,3 @@ spring:
     url: jdbc:mysql://mysql.hjgh.svc.cluster.local:33061/fy_boss?autoReconnect=true&allowMultiQueries=true
     username: app_common
     password: r|VR^Kmjv(Xw9wTbXGJ6U&?.@
-
-xzboss:
-  oppfUrl: http://221.176.64.218:18000/oppf
-  getToken : http://221.176.64.218:18001/aopoauth/oauth/token
-  appId : 501260
-  appKey : 89d98e6ed5bf564642ac0d95b720047b
-  opId : 90025014
-  orgId : 911001072
-  regionCode : 891
-  countyCode : 1001

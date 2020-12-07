@@ -8,10 +8,10 @@ import org.springframework.cloud.netflix.feign.EnableFeignClients;
 @EnableFeignClients
 @EnableDiscoveryClient
 @SpringBootApplication
-public class JBasicApplication {
+public class JBasicApp {
 
     public static void main(String[] args) {
-        new SpringApplicationBuilder(JBasicApplication.class).web(true).run(args);
+        new SpringApplicationBuilder(JBasicApp.class).web(true).run(args);
     }
 
 }
