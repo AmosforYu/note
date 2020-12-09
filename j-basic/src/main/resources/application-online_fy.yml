@@ -1,6 +1,0 @@
-logging:
-  config: classpath:logback-default.xml
-
-xzboss:
-  regionCode : 891
-  countyCode : 1001

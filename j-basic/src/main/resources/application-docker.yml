@@ -1,6 +1,0 @@
-logging:
-  config: classpath:logback-docker.xml
-
-xzboss:
-  regionCode : 891
-  countyCode : 1001

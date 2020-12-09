@@ -3,40 +3,20 @@ spring:
     name: cloud-server
 
 server:
-  port: 3300
-
----
-#spring:
-#  profiles: server01 ###spingboot2.0弃用该写法，为了提升对 Kubernetes 的原生支持而作的修改
-spring:
-  config:
-    activate:
-      on-profile: server01
-
-eureka:
-  instance:
-    prefer-ip-address: true
-    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
-    hostname: ${spring.application.name}
-  client:
-    register-with-eureka: true
-    fetch-registry: true
-    service-url:
-      default-zone: http://server02.cluster.local:4000/eureka/
+  port: 4000
 
 ---
 spring:
-  config:
-    activate:
-      on-profile: server02
-
+  profiles: server01
 eureka:
   instance:
+    hostname: server01.cluster.local
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}:${spring.application.name}
     prefer-ip-address: true
-    instance-id: ${spring-amqp.application.name}:${spring.cloud.client.ip-address}:${server.port}
-    hostname: ${spring-amqp.application.name}
   client:
-    register-with-eureka: true
-    fetch-registry: true
+    register-with-eureka: false #false表示不向注册中心注册自己。
+    fetch-registry: false #false表示自己端就是注册中心，我的职责就是维护服务实例，并不需要去检索其他服务地址
     service-url:
-      default-zone: http://server01.cluster.local:4000/eureka/
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+  server:
+    enable-self-preservation: false #

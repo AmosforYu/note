@@ -1,13 +1,6 @@
 /*
- * Project: yq-mod-phone
- * 
- * File Created at 2018年8月24日
- * 
- * Copyright 2016 CMCC Corporation Limited.
- * All rights reserved.
- *
  * This software is the confidential and proprietary information of
- * ZYHY Company. ("Confidential Information").  You shall not
+ * XXXX Company. ("Confidential Information").  You shall not
  * disclose such Confidential Information and shall use it only in
  * accordance with the terms of the license.
  */
@@ -47,13 +40,3 @@ public class CheckUtil {
 
 
 }
-
-
-/**
- * Revision history
- * -------------------------------------------------------------------------
- * 
- * Date Author Note
- * -------------------------------------------------------------------------
- * 2018年8月24日 wangfeng creat
- */

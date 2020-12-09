@@ -1,0 +1,17 @@
+server:
+  port: 3301
+  servlet:
+    context-path: /learn/basics
+
+spring:
+  application:
+    name: jbasics
+
+eureka:
+  instance:
+    instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}
+    prefer-ip-address: true
+    hostname: ${spring.cloud.client.ip-address}
+  client:
+    service-url:
+      defaultZone: http://server01.cluster.local:4000/eureka/ #http://server02.cluster.local:4000/eureka/ 多注册中心
