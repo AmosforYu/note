@@ -1,0 +1,45 @@
+server:
+  port: 3301
+  servlet:
+    context-path: /learn/basics
+
+  datasource:
+    url: jdbc:mysql://mysqlDB.local:3306/spring_demo?autoReconnect=true&allowMultiQueries=true
+    username: root
+    password: w9a2t8
+    # 使用druid数据源
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    filters: stat
+    maxActive: 300
+    initialSize: 5
+    maxWait: 60000
+    minIdle: 5
+    removeAbandoned: false
+    removeAbandonedTimeout: 180
+    logAbandoned: true
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 600000
+    validationQuery: select 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 20
+
+    redis:
+      host: cacheDB.local
+      port: 6379
+      lettuce:
+        pool:
+          max-active: 300
+          max-wait: 500
+          max-idle: 300
+          min-idle: 5
+      timeout: 5000
+      testOnBorrow: false
+      testOnReturn: false
+      password: w9a2t8
+
+
+

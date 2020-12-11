@@ -2,6 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <description>基础模块，测试演示效果</description>
     <parent>
         <artifactId>hy</artifactId>
         <groupId>com.yyb.learn</groupId>
@@ -103,6 +104,12 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-commons</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.yyb.learn</groupId>
+            <artifactId>j-common</artifactId>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
 
     </dependencies>

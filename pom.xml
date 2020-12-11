@@ -2,6 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <description></description>
     <modelVersion>4.0.0</modelVersion>
     <!-- 项目组织的唯一标识符 ：对应JAVA的包的结构，是main目录里java的目录结构-->
     <groupId>com.yyb.learn</groupId>
@@ -9,7 +10,7 @@
     <artifactId>hy</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <!-- 让用户更加能够接受的项目名 -->
+    <!-- 自定义让使用者更加能够接受的项目名 -->
     <name>hy</name>
 
     <!--=====  Project Object Model  =====-->

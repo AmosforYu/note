@@ -14,4 +14,9 @@ eureka:
     hostname: ${spring.cloud.client.ip-address}
   client:
     service-url:
-      defaultZone: http://server01.cluster.local:4000/eureka/ #http://server02.cluster.local:4000/eureka/ 多注册中心
+      defaultZone: http://server01.cluster.local:4001/eureka/,http://server02.cluster.local:4002/eureka/
+
+
+ribbon:
+  ReadTimeout: 100000
+  ConnectTimeout: 100000
