@@ -14,7 +14,7 @@ public class MyException extends RuntimeException implements Serializable {
     private Map<Object, Object> extraInfo;
 
     public MyException(Error error, String desc) {
-        super("code:" + error.getErrorCode() + ",msg:" + error.getErrorMsg() + ",[desc:" + desc + "]");
+        super("code:" + error.getErrorCode() + ",msg:" + error.getErrorMsg());
         this.error = error;
         this.desc = desc;
         setMyExceptionStackTrace();

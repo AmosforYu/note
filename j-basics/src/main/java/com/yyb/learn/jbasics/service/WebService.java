@@ -17,4 +17,9 @@ public class WebService {
 
     @Autowired
     private WebDao webDao;
+
+    public String helloWorld() {
+        return "HELLO WORLD !";
+    }
+
 }

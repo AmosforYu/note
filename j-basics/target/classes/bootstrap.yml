@@ -15,3 +15,8 @@ eureka:
   client:
     service-url:
       defaultZone: http://server01.cluster.local:4001/eureka/,http://server02.cluster.local:4002/eureka/
+
+
+ribbon:
+  ReadTimeout: 100000
+  ConnectTimeout: 100000

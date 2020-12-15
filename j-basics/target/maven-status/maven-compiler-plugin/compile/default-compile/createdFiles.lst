@@ -8,6 +8,7 @@ com\yyb\learn\jbasics\basic\designpattern\C_05SingletonCurrLazyStatic$SingletonH
 com\yyb\learn\jbasics\basic\designpattern\B_01ShapeSquare.class
 com\yyb\learn\jbasics\basic\superimplements\SuperTest.class
 com\yyb\learn\jbasics\basic\designpattern\B_02ColorBlue.class
+com\yyb\learn\jbasics\utils\BasicsControllerAdvice.class
 com\yyb\learn\jbasics\utils\SHA1Encode.class
 com\yyb\learn\jbasics\basic\JAVA8\lambda\NoResultManyParam.class
 com\yyb\learn\jbasics\basic\JAVA8\lambda\Lambda01.class

@@ -14,48 +14,48 @@ public class RespBody {
 
     public static JSONObject success() {
         JSONObject success = new JSONObject();
-        success.put("errorCode", SUCCESS_CODE);
-        success.put("errorMsg", SUCCESS_MSG);
+        success.put("respCode", SUCCESS_CODE);
+        success.put("respMsg", SUCCESS_MSG);
 
         return success;
     }
 
     public static JSONObject failure() {
         JSONObject success = new JSONObject();
-        success.put("errorCode", FAILURE_CODE);
-        success.put("errorMsg", FAILURE_MSG);
+        success.put("respCode", FAILURE_CODE);
+        success.put("respMsg", FAILURE_MSG);
 
         return success;
     }
 
     public static JSONObject successMsg(String msg) {
         JSONObject success = new JSONObject();
-        success.put("errorCode", SUCCESS_CODE);
-        success.put("errorMsg", msg);
+        success.put("respCode", SUCCESS_CODE);
+        success.put("respMsg", msg);
 
         return success;
     }
 
     public static JSONObject failureMsg(String msg) {
         JSONObject success = new JSONObject();
-        success.put("errorCode", FAILURE_CODE);
-        success.put("errorMsg", msg);
+        success.put("respCode", FAILURE_CODE);
+        success.put("respMsg", msg);
 
         return success;
     }
 
     public static JSONObject succCodeMsg(int code, String msg) {
         JSONObject success = new JSONObject();
-        success.put("errorCode", code);
-        success.put("errorMsg", msg);
+        success.put("respCode", code);
+        success.put("respMsg", msg);
 
         return success;
     }
 
     public static JSONObject failCodeMsg(int code, String msg) {
         JSONObject success = new JSONObject();
-        success.put("errorCode", code);
-        success.put("errorMsg", msg);
+        success.put("respCode", code);
+        success.put("respMsg", msg);
 
         return success;
     }
