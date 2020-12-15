@@ -1,8 +1,0 @@
-logging:
-  config: classpath:logback-default.xml
-
-spring:
-  datasource:
-    url: jdbc:mysql://mysqlDB.local:3306/spring_demo?autoReconnect=true&allowMultiQueries=true
-    username: root
-    password: w9a2t8
