@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
  * @description BasicsControllerAdvice
  * @date 2020/12/14 0014 18:12
  */
-@ControllerAdvice
+//@ControllerAdvice
 public class BasicsControllerAdvice extends GlobalControllerAdvice {
+    //第一种其他服务模块实现子模块全局处理异常方式
 }
