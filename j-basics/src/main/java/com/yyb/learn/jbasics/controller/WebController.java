@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
  **/
 @RestController
 public class WebController {
+
     @Autowired
     private WebService webService;
 

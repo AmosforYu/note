@@ -52,6 +52,7 @@ OAuth2认证机制
 3.https://blog.csdn.net/qq_36255237/article/details/91990400
 （注：springcloud的D版本之后的版本已经不需要在主动添加注解启用注册功能，只需依赖spring-cloud-starter-netflix开头的依赖就可）
 
+4.https://www.cnblogs.com/acm-bingzi/p/javaAnnotation.html(自定义注解，修改注解属性默认值)
 
 ```
 
