@@ -1,15 +1,19 @@
-package com.yyb.learn.jbasics;
+package com.yyb.learn.jbusine;
 
 import com.yyb.common.annotations.EnableControllerAdvice;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
-@EnableControllerAdvice //第二种其他服务模块实现子模块全局处理异常方式,在其他模块启动类添加该注解
+@EnableControllerAdvice
 @SpringBootApplication
 @EnableFeignClients
-public class JBasicsApp {
+//@MapperScan(value = "com.yyb.learn.jbusine.dao")
+public class JBusineApplication {
+
     public static void main(String[] args) {
-        SpringApplication.run(JBasicsApp.class, args);
+        SpringApplication.run(JBusineApplication.class, args);
     }
+
 }

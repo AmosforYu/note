@@ -1,7 +1,7 @@
 server:
-  port: 3301
+  port: 3302
   servlet:
-    context-path: /learn/basics
+    context-path: /learn/busine
 
   datasource:
     url: jdbc:mysql://mysqlDB.local:3306/spring_demo?autoReconnect=true&allowMultiQueries=true&serverTimezone=Hongkong
@@ -9,7 +9,7 @@ server:
     password: w9a2t8
     # 使用druid数据源
     type: com.alibaba.druid.pool.DruidDataSource
-#    driverClassName: com.mysql.cj.jdbc.Driver #在Druid连接池的配置中，driverClassName可配可不配，如果不配置会根据url自动识别dbType(数据库类型)，然后选择相应的driverClassName
+    driver-class-name: com.mysql.cj.jdbc.Driver
     filters: stat
     maxActive: 300
     initialSize: 5
@@ -26,14 +26,6 @@ server:
     testOnReturn: false
     poolPreparedStatements: true
     maxOpenPreparedStatements: 20
-    druid:
-      stat-view-servlet:
-        login-username: root  #配置监控页面访问登录名称
-        login-password: w9a2t8  #配置监控页面访问登录密码
-      filter:
-        stat:
-          log-slow-sql: true  #是否开启慢sql查询监控
-          slow-sql-millis: 1  #慢SQL执行时间
 
     redis:
       host: cacheDB.local

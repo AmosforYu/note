@@ -1,10 +1,14 @@
 package com.yyb.learn.jbasics.service;
 
+import com.yyb.common.dtos.error.Error;
+import com.yyb.common.dtos.error.MyException;
 import com.yyb.learn.jbasics.dao.WebDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Map;
 
 /**
  * @description: 表现层service
@@ -22,4 +26,16 @@ public class WebService {
         return "HELLO WORLD !";
     }
 
+    public Map<String, String> getAreaInfoByPhonePre(String phone) {
+        Map<String, String> areaInfoByPhonePre = webDao.getAreaInfoByPhonePre(formatPhonePre(phone));
+        return areaInfoByPhonePre;
+    }
+
+    private String formatPhonePre(String phone) {
+        if ("".equals(phone) || null == phone) {
+            throw new MyException(Error.PARAM_ERROR, "请传入正确手机号");
+        }
+
+        return phone.substring(0, 7);
+    }
 }

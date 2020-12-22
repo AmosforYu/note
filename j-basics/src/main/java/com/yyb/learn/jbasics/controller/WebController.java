@@ -3,12 +3,14 @@ package com.yyb.learn.jbasics.controller;
 import com.yyb.common.dtos.error.Error;
 import com.yyb.common.dtos.error.MyException;
 import com.yyb.learn.jbasics.service.WebService;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @description: 表现层controller
@@ -36,4 +38,22 @@ public class WebController {
                                        @RequestParam(value = "xxx") Integer xxx) {
         return param + xxx;
     }
+
+    @RequestMapping(path = "/basicsHealth", method = RequestMethod.GET)
+    public Map<Object, Object> basicsHealth(@RequestParam("errorNum") Integer errorNum,
+                  @RequestParam(value = "version", required = false) String version) {
+        Map<Object, Object> map = new HashMap<>();
+        map.put("errorNum", errorNum);
+
+        if (version != null && !"".equals(version)) {
+            map.put("version", version);
+        }
+        return map;
+    }
+
+    @RequestMapping(value = "/getAreaInfo/phonePre", method = RequestMethod.GET)
+    public Map<String, String> getAreaInfoByPhonePre(@RequestParam("phone") String phone) {
+        return webService.getAreaInfoByPhonePre(phone);
+    }
+
 }

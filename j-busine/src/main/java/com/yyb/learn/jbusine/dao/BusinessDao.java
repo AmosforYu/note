@@ -1,4 +1,4 @@
-package com.yyb.learn.jbasics.dao;
+package com.yyb.learn.jbusine.dao;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -12,7 +12,7 @@ import java.util.Map;
  * @date: 2020-08-14 14:01
  **/
 @Mapper
-public interface WebDao {
+public interface BusinessDao {
 
     @Select("SELECT province provinceName, city cityName, isp, area_code areaCode, province_code provinceCode," +
             "post_code postCode FROM phone WHERE phone=#{phone} ")

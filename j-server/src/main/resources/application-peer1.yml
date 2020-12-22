@@ -25,7 +25,7 @@ eureka:
     lease-expiration-duration-in-seconds: 90 #定义服务失效的时间，默认90s
     lease-renewal-interval-in-seconds: 30 #定义服务续约任务的调用时间，默认30s
   client:
-    register-with-eureka: true #false表示不向注册中心注册自己。
-    fetch-registry: true #false表示自己端就是注册中心，我的职责就是维护服务实例，并不需要去检索其他服务地址
+    register-with-eureka: false #false表示不向注册中心注册自己。
+    fetch-registry: false #false表示自己端就是注册中心，我的职责就是维护服务实例，并不需要去检索其他服务地址
     service-url:
       defaultZone: http://server02.cluster.local:4002/eureka/

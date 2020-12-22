@@ -1,4 +1,4 @@
-package com.yyb.learn.jbasics.utils;//package com.yyb.lean.utils;
+package com.yyb.learn.jbasics.utils;
 //
 //public class AppKeySecret {
 //
