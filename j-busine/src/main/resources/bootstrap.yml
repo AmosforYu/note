@@ -16,6 +16,18 @@ eureka:
     service-url:
       defaultZone: http://server01.cluster.local:4001/eureka/,http://server02.cluster.local:4002/eureka/
 
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 10000 # 设置hystrix的超时时间
+          strategy: SEMAPHORE
+          semaphore:
+            maxConcurrentRequests: 200
 
 ribbon:
   ReadTimeout: 100000

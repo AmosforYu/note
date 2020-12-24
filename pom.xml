@@ -95,6 +95,7 @@
 
         <!--xxxx模块-->
         <module>j-basics</module>
+        <module>j-area</module>
         <module>j-busine</module>
     </modules>
 

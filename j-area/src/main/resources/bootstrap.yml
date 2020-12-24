@@ -1,11 +1,11 @@
 server:
-  port: 3301
+  port: 3303
   servlet:
-    context-path: /learn/basics
+    context-path: /learn/area
 
 spring:
   application:
-    name: jbasics
+    name: jarea
 
 eureka:
   instance:

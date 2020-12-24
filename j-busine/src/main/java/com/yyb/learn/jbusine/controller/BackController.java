@@ -12,18 +12,20 @@ import java.util.Map;
 /**
  * @description: 表现层controller
  * @author: Mr.Yu
- * @date: 2020-08-14 15:37
+ * @date: 2020-12-22 17:27
  **/
 @RestController
-public class BusinessController {
+public class BackController {
 
-    @Autowired
-    private BusinessService businessService;
-
-    @RequestMapping(path = "/getHealthInfo", method = RequestMethod.GET)
-    public Map<Object, Object> helloWorld(@RequestParam("errorNum") Integer errorNum,
-                                          @RequestParam(value = "version", required = false) String version) {
-        return businessService.getHealthInfoFromBasics(errorNum, version);
+    @RequestMapping(path = "/health", method = RequestMethod.GET)
+    public String health() {
+        return "<h1>OK</h1>";
     }
+
+    @RequestMapping(path = "/error", method = RequestMethod.GET)
+    public String error() {
+        return "[error]";
+    }
+
 
 }

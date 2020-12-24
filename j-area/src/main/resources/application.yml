@@ -1,0 +1,53 @@
+server:
+  port: 3303
+  servlet:
+    context-path: /learn/area
+
+  datasource:
+    url: jdbc:mysql://mysqlDB.local:3306/spring_demo?autoReconnect=true&allowMultiQueries=true&serverTimezone=Hongkong
+    username: root
+    password: w9a2t8
+    # 使用druid数据源
+    type: com.alibaba.druid.pool.DruidDataSource
+#    driverClassName: com.mysql.cj.jdbc.Driver #在Druid连接池的配置中，driverClassName可配可不配，如果不配置会根据url自动识别dbType(数据库类型)，然后选择相应的driverClassName
+    filters: stat
+    maxActive: 300
+    initialSize: 5
+    maxWait: 60000
+    minIdle: 5
+    removeAbandoned: false
+    removeAbandonedTimeout: 180
+    logAbandoned: true
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 600000
+    validationQuery: select 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 20
+    druid:
+      stat-view-servlet:
+        login-username: root  #配置监控页面访问登录名称
+        login-password: w9a2t8  #配置监控页面访问登录密码
+      filter:
+        stat:
+          log-slow-sql: true  #是否开启慢sql查询监控
+          slow-sql-millis: 1  #慢SQL执行时间
+
+    redis:
+      host: cacheDB.local
+      port: 6379
+      lettuce:
+        pool:
+          max-active: 300
+          max-wait: 500
+          max-idle: 300
+          min-idle: 5
+      timeout: 5000
+      testOnBorrow: false
+      testOnReturn: false
+      password: w9a2t8
+
+
+
