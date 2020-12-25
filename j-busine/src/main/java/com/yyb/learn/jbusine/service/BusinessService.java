@@ -1,6 +1,8 @@
 package com.yyb.learn.jbusine.service;
 
+import com.alibaba.fastjson.JSONObject;
 import com.yyb.learn.jbusine.dao.BusinessDao;
+import com.yyb.learn.jbusine.feign.AreaFeign;
 import com.yyb.learn.jbusine.feign.BasicsFeign;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,14 +26,28 @@ public class BusinessService {
     @Autowired
     private BasicsFeign basicsFeign;
 
+    @Autowired
+    private AreaFeign areaFeign;
+
     public String helloWorld() {
         return "HELLO WORLD !";
     }
 
     public Map<Object, Object> getHealthInfoFromBasics(int code, String version) {
-        Map<String, String> areaInfoByPhonePre = businessDao.getAreaInfoByPhonePre("1823922");
-        Map<Object, Object> map = basicsFeign.basicsHealth(code, areaInfoByPhonePre.get("provinceCode"));
+        JSONObject areaInfoByPhone = getAreaInfo("1823922xxxx");
+        Map<Object, Object> map = basicsFeign.basicsHealth(code, areaInfoByPhone.get("provinceCode"));
         return map;
+    }
+
+    private JSONObject getAreaInfo(String phone) {
+        JSONObject areaInfo = areaFeign.getAreaInfoByPhone(phone);
+        int respCode = areaInfo.getIntValue("respCode");
+        if (0 != respCode) {
+            areaInfo.remove("data");
+            return areaInfo;
+        }
+
+        return (JSONObject) areaInfo.get("data");
     }
 
 }

@@ -46,4 +46,14 @@ public class AreaInfoDto {
     public void setCityCode(String cityCode) {
         this.cityCode = cityCode;
     }
+
+    @Override
+    public String toString() {
+        return "AreaInfoDto{" +
+                "provinceName='" + provinceName + '\'' +
+                ", cityName='" + cityName + '\'' +
+                ", provinceCode='" + provinceCode + '\'' +
+                ", cityCode='" + cityCode + '\'' +
+                '}';
+    }
 }

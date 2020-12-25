@@ -1,5 +1,7 @@
 package com.yyb.learn.jarea.service;
 
+import com.alibaba.fastjson.JSONObject;
+import com.yyb.common.dtos.response.RespBody;
 import com.yyb.learn.jarea.dao.AreaDao;
 import com.yyb.learn.jarea.entity.AreaInfoDto;
 import org.apache.commons.lang.StringUtils;
@@ -16,21 +18,21 @@ import org.springframework.stereotype.Service;
 @Service
 public class AreaService {
 
-    private static final Logger LOG = LoggerFactory.getLogger("AreaService");
+    private static final Logger LOG = LoggerFactory.getLogger(AreaService.class);
 
     @Autowired
     private AreaDao areaDao;
 
-    public AreaInfoDto getAreaInfoByPhone(String phone) {
+    public JSONObject getAreaInfoByPhone(String phone) {
         if (isNotPhone(phone)) {
-            return new AreaInfoDto();
+            return RespBody.failCodeMsg(10001, "请传入正确手机号");
         }
 
         String phonePre = formatPhonePre(phone);
 
         String cacheValue = getAreaInfoFromCache(phonePre);
         if (StringUtils.isNotEmpty(cacheValue)) {
-            return parseCacheToAreaInfo(cacheValue);
+            return RespBody.successData(parseCacheToAreaInfo(cacheValue));
         }
 
         AreaInfoDto areaInfo = getAreaInfoFromDB(phonePre);
@@ -40,12 +42,12 @@ public class AreaService {
         }
 
         if (null == areaInfo) {
-            return null;
+            return RespBody.failCodeMsg(10002, "未查到对应的归属地信息");
         }
 
         storeAreaToCache(phonePre, areaInfo);
 
-        return areaInfo;
+        return RespBody.successData(areaInfo);
     }
 
     private void storeAreaToCache(String phonePre, AreaInfoDto areaInfo) {
@@ -58,18 +60,18 @@ public class AreaService {
     }
 
     private AreaInfoDto getAreaInfoFromDB(String phonePre) {
-        return areaDao.getAreaInfoByPhone(formatPhonePre(phonePre));
+        return areaDao.getAreaInfoByPhone(phonePre);
     }
 
     private AreaInfoDto parseCacheToAreaInfo(String cacheValue) {
+
         //todo: 缓存取出的数据格式化成封装对象
         return null;
     }
 
     private String getAreaInfoFromCache(String phonePre) {
 
-
-        return null;
+        return "";
     }
 
     private String formatPhonePre(String phone) {

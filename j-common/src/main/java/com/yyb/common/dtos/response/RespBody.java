@@ -28,6 +28,15 @@ public class RespBody {
         return success;
     }
 
+    public static JSONObject successData(Object data) {
+        JSONObject success = new JSONObject();
+        success.put("respCode", SUCCESS_CODE);
+        success.put("respMsg", SUCCESS_MSG);
+        success.put("data", data);
+
+        return success;
+    }
+
     public static JSONObject successMsg(String msg) {
         JSONObject success = new JSONObject();
         success.put("respCode", SUCCESS_CODE);
