@@ -3,13 +3,10 @@ package com.yyb.learn.jbusine.service;
 import com.alibaba.fastjson.JSONObject;
 import com.yyb.learn.jbusine.dao.BusinessDao;
 import com.yyb.learn.jbusine.feign.AreaFeign;
-import com.yyb.learn.jbusine.feign.BasicsFeign;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Map;
 
 /**
  * @description: 表现层service
@@ -24,19 +21,17 @@ public class BusinessService {
     private BusinessDao businessDao;
 
     @Autowired
-    private BasicsFeign basicsFeign;
-
-    @Autowired
     private AreaFeign areaFeign;
 
-    public String helloWorld() {
-        return "HELLO WORLD !";
-    }
+    public JSONObject getAreaInfoFromArea(String phone) {
+        LOG.info("[{}] Enter get area info from area ", phone);
+        JSONObject areaInfoByPhone = getAreaInfo(phone);
+        if (!areaInfoByPhone.containsKey("provinceCode")) {
+            return areaInfoByPhone;
+        }
 
-    public Map<Object, Object> getHealthInfoFromBasics(int code, String version) {
-        JSONObject areaInfoByPhone = getAreaInfo("1823922xxxx");
-        Map<Object, Object> map = basicsFeign.basicsHealth(code, areaInfoByPhone.get("provinceCode"));
-        return map;
+        areaInfoByPhone.put("busineDesc", "feign调用area模块查询归属地信息服务");
+        return areaInfoByPhone;
     }
 
     private JSONObject getAreaInfo(String phone) {
@@ -47,7 +42,12 @@ public class BusinessService {
             return areaInfo;
         }
 
-        return (JSONObject) areaInfo.get("data");
+        return areaInfo.getJSONObject("data");
+    }
+
+    public JSONObject getAreaDemo(String phone) {
+        JSONObject areaInfo = areaFeign.getAreaInfoByPhone(phone);
+        return areaInfo;
     }
 
 }

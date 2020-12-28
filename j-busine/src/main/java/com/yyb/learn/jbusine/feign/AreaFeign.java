@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @description AreaFeign
  * @date 2020/12/25 0025 17:51
  */
-@FeignClient("jarea")
+@FeignClient(name = "jarea", fallback = AreaFeignFallBack.class)
 public interface AreaFeign {
 
     @RequestMapping(value ="/learn/area/phone/area", method = RequestMethod.GET)

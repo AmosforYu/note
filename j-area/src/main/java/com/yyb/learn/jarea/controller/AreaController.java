@@ -17,14 +17,17 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 @RestController
 public class AreaController {
-    private static final Logger LOG = LoggerFactory.getLogger(AreaController.class);
 
     @Autowired
     private AreaService areaService;
 
+    /**
+     * 根据手机号获取归属地信息
+     * @param phone
+     * @return
+     */
     @RequestMapping(value ="/phone/area", method = RequestMethod.GET)
     public JSONObject getAreaInfoByPhone(@RequestParam("phone") String phone) {
-        LOG.info("[{}] Enter AreaController.getAreaInfoByPhone ", phone);
         return areaService.getAreaInfoByPhone(phone);
     }
 

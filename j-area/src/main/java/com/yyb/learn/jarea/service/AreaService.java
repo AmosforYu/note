@@ -24,6 +24,14 @@ public class AreaService {
     private AreaDao areaDao;
 
     public JSONObject getAreaInfoByPhone(String phone) {
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        LOG.info("[{}] Enter get area info by phone ", phone);
         if (isNotPhone(phone)) {
             return RespBody.failCodeMsg(10001, "请传入正确手机号");
         }
