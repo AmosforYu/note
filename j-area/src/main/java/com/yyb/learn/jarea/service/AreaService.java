@@ -8,7 +8,9 @@ import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.request.async.DeferredResult;
 
 /**
  * @author Yamos
@@ -23,15 +25,19 @@ public class AreaService {
     @Autowired
     private AreaDao areaDao;
 
-    public JSONObject getAreaInfoByPhone(String phone) {
-
+    @Async("area-executor")
+    public void getAreaInfoByPhone(DeferredResult<JSONObject> deferredResult, String phone) {
         try {
             Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
 
-        LOG.info("[{}] Enter get area info by phone ", phone);
+            JSONObject result = getAreaInfoResult(phone);
+            deferredResult.setResult(result);
+        } catch (Exception e) {
+            deferredResult.setErrorResult(e);
+        }
+    }
+
+    private JSONObject getAreaInfoResult(String phone) {
         if (isNotPhone(phone)) {
             return RespBody.failCodeMsg(10001, "请传入正确手机号");
         }

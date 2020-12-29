@@ -32,3 +32,12 @@ hystrix:
 ribbon:
   ReadTimeout: 100000
   ConnectTimeout: 100000
+
+area:
+  pool:
+    coreSize: 100
+    maxSize: 100
+    queueCapacity: 3000
+    keepAliveSeconds: 60
+    awaitTerminationSeconds: 60
+    threadNamePrefix: area-mod-exec-

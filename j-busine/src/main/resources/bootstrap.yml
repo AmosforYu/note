@@ -28,7 +28,7 @@ hystrix:
           enabled: true
         isolation:
           thread:
-            timeoutInMilliseconds: 1000 # 设置hystrix的超时时间
+            timeoutInMilliseconds: 10000 # 设置hystrix的超时时间
           strategy: SEMAPHORE
           semaphore:
             maxConcurrentRequests: 200
