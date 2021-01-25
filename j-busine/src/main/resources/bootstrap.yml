@@ -36,3 +36,11 @@ hystrix:
 ribbon:
   ReadTimeout: 100000
   ConnectTimeout: 100000
+
+#Feign调用服务时修改负载均衡策略方法②
+#{服务提供者spring.application.name}:
+#  ribbon:
+#    NFLoadBalancerRuleClassName: {负载均衡策略的全包名}
+jarea:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.BestAvailableRule
