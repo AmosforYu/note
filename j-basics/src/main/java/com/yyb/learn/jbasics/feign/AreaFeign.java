@@ -1,4 +1,4 @@
-package com.yyb.learn.jbusine.feign;
+package com.yyb.learn.jbasics.feign;
 
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @description AreaFeign
  * @date 2020/12/25 0025 17:51
  */
-@FeignClient(name = "jarea")
+@FeignClient(name = "jarea", fallback = AreaFeignFallBack.class)//服务降级
 public interface AreaFeign {
 
     @RequestMapping(value ="/learn/area/phone/area", method = RequestMethod.GET)

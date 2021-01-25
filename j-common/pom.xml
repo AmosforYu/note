@@ -29,6 +29,7 @@
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
+            <version>4.5.12</version>
         </dependency>
 
         <!--引入外部依赖-->
@@ -43,6 +44,7 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
+            <version>5.2.7.RELEASE</version>
         </dependency>
 
         <dependency>
@@ -54,24 +56,21 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
+            <version>1.7.30</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
-            <version>LATEST</version>
+            <version>4.0.1</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
+            <version>5.2.7.RELEASE</version>
         </dependency>
 
     </dependencies>
-
-    <build>
-        <finalName>j-common</finalName>
-    </build>
-
 
 </project>

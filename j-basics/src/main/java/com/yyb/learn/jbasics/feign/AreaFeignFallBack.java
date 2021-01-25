@@ -1,9 +1,13 @@
-package com.yyb.learn.jbusine.feign;
+package com.yyb.learn.jbasics.feign;
 
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
+ * 断路器使用-【服务降级】-1.Feign实现方式：实现Feign接口的函数，重写方法即为对应的fallback()
  * @author Yamos
  * @description AreaFeignFallBack
  * @date 2020/12/28 0028 15:08

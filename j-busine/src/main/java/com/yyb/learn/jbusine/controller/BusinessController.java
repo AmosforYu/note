@@ -29,14 +29,4 @@ public class BusinessController {
         return businessService.getAreaInfoFromArea(phone);
     }
 
-    /**
-     * feign fallback demo
-     * @param phone
-     * @return
-     */
-    @RequestMapping(path = "/area/demo", method = RequestMethod.GET)
-    public JSONObject feignFallBack(@RequestParam("phone") String phone) {
-        return businessService.getAreaDemo(phone);
-    }
-
 }

@@ -44,10 +44,4 @@ public class BusinessService {
 
         return areaInfo.getJSONObject("data");
     }
-
-    public JSONObject getAreaDemo(String phone) {
-        JSONObject areaInfo = areaFeign.getAreaInfoByPhone(phone);
-        return areaInfo;
-    }
-
 }

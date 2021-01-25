@@ -1,5 +1,6 @@
 package com.yyb.learn.jbasics.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.yyb.common.dtos.error.Error;
 import com.yyb.common.dtos.error.MyException;
 import com.yyb.learn.jbasics.service.WebService;
@@ -55,5 +56,16 @@ public class WebController {
     public Map<String, String> getAreaInfoByPhonePre(@RequestParam("phone") String phone) {
         return webService.getAreaInfoByPhonePre(phone);
     }
+
+    /**
+     * feign fallback demo
+     * @param phone
+     * @return
+     */
+    @RequestMapping(path = "/area/demo", method = RequestMethod.GET)
+    public JSONObject feignFallBack(@RequestParam("phone") String phone) {
+        return webService.getAreaDemo(phone);
+    }
+
 
 }

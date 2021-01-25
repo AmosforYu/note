@@ -15,6 +15,7 @@ eureka:
   client:
     service-url:
       defaultZone: http://server01.cluster.local:4001/eureka/,http://server02.cluster.local:4002/eureka/
+    registry-fetch-interval-seconds: 30 # 缓存清单的更新时间，默认30秒
 
 hystrix:
   command:
