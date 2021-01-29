@@ -19,6 +19,21 @@ eureka:
 feign:
   hystrix:
     enabled: true
+#  compression:
+#    request:
+#      enabled: true  # 配置请求GZIP压缩
+#    response:
+#      enabled: true  # 配置请求GZIP压缩
+
+# feign交互日志输出级别
+logging:
+  level:
+    com:
+      yyb:
+        learn:
+          jbusine:
+            feign:
+              AreaFeign: FULL
 
 hystrix:
   command:
@@ -44,3 +59,8 @@ ribbon:
 jarea:
   ribbon:
     NFLoadBalancerRuleClassName: com.netflix.loadbalancer.BestAvailableRule
+    ReadTimeout: 50000  # 设置针对jarea服务的读取超时时间
+    ConnectTimeout: 50000 # 设置针对jarea服务的连接超时时间
+#    OkToRetryOnAllOperations: true # 设置针对jarea服务所有操作请求都进行重试
+#    MaxAutoRetriesNextServer: 2 # 设置针对jarea服务切换实例的重试次数
+#    MaxAutoRetries: 1 # 设置针对jarea服务的当前实例的重试次数
