@@ -93,6 +93,8 @@
         <!--服务注册中心-->
         <module>j-server</module>
 
+        <module>j-gateway</module>
+
         <module>j-dashboard</module>
 
         <!--xxxx模块-->

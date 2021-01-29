@@ -26,14 +26,14 @@ feign:
 #      enabled: true  # 配置请求GZIP压缩
 
 # feign交互日志输出级别
-logging:
-  level:
-    com:
-      yyb:
-        learn:
-          jbusine:
-            feign:
-              AreaFeign: FULL
+#logging:
+#  level:
+#    com:
+#      yyb:
+#        learn:
+#          jbusine:
+#            feign:
+#              AreaFeign: FULL
 
 hystrix:
   command:

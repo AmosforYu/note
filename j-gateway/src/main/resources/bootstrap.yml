@@ -1,0 +1,15 @@
+server:
+  port: 3305
+
+spring:
+  application:
+    name: j-gateway
+
+eureka:
+  instance:
+    instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}
+    prefer-ip-address: true
+    hostname: ${spring.cloud.client.ip-address}
+  client:
+    service-url:
+      defaultZone: http://server01.cluster.local:4001/eureka/,http://server02.cluster.local:4002/eureka/

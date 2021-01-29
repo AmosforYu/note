@@ -1,18 +1,5 @@
 server:
   port: 3305
-spring:
-  application:
-    name: j-gateway
-
-eureka:
-  instance:
-    instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}
-    prefer-ip-address: true
-    hostname: ${spring.cloud.client.ip-address}
-  client:
-    service-url:
-      defaultZone: http://server01.cluster.local:4001/eureka/,http://server02.cluster.local:4002/eureka/
-    registry-fetch-interval-seconds: 30 # \u7F13\u5B58\u6E05\u5355\u7684\u66F4\u65B0\u65F6\u95F4\uFF0C\u9ED8\u8BA430\u79D2
 
 zuul:
   routes:
