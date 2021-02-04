@@ -2,14 +2,22 @@ server:
   port: 3305
 
 zuul:
+  prefix: /learn
   routes:
     jbusine:
-      path: /learn/busine/*
+      path: /busine/**
       serviceId: jbusine
-      sensitiveHeaders:
-      stripPrefix: false
+      sensitiveHeaders: #设置需过滤的Header敏感信息,逗号隔开
+      stripPrefix: false #路由时默认会去除前缀,在当前路由设置不去除前缀
     jbasics:
-      path: /learn/jbasics/*
+      path: /jbasics/**
       serviceId: jbasics
       sensitiveHeaders:
       stripPrefix: false
+      customSensi
+  ignored-services: jarea,jdashboard  #不自动创建默认路由规则,多个逗号隔开
+  ribbon-isolation-strategy: THREAD #Zuul默认使用信号量来实现隔离, 改为线程池隔离模式
+  thread-pool:
+    use-separate-thread-pools: true #使每个路由使用独立的线程池
+    thread-pool-key-prefix: zuul  #为每个路由的HystrixThreadPoolKey添加前缀
+  add-host-header: true #使用shiro、spring security后重定向问题解决

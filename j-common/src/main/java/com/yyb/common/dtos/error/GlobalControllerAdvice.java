@@ -29,6 +29,7 @@ public class GlobalControllerAdvice {
     @ResponseBody
     public ResponseEntity<ErrorResponse> handleMyException(MyException e) {
         System.out.println("》》》1.自定义异常::统一处理《《《");
+        LOGGER.info("》》》1.自定义异常::统一处理《《《");
         return new ResponseEntity<>(new ErrorResponse(e.getError(), e.getDesc()), HttpStatus.BAD_REQUEST);
     }
 
@@ -39,6 +40,7 @@ public class GlobalControllerAdvice {
     @ResponseBody
     public ResponseEntity<ErrorResponse> handleParamException(Exception e) {
         System.out.println("》》》2.参数异常::统一处理《《《");
+        LOGGER.info("》》》2.参数异常::统一处理《《《");
         return new ResponseEntity<>(new ErrorResponse(Error.PARAM_ERROR, e.getLocalizedMessage()),
                 HttpStatus.BAD_REQUEST);
     }
@@ -48,6 +50,7 @@ public class GlobalControllerAdvice {
     @ResponseBody
     public ResponseEntity<ErrorResponse> handleMethodException(Exception e) {
         System.out.println("》》》3.请求方式异常::统一处理《《《");
+        LOGGER.info("》》》3.请求方式异常::统一处理《《《");
         return new ResponseEntity<>(new ErrorResponse(Error.METHOD_NOT_ALLOWED, e.getLocalizedMessage()),
                 HttpStatus.METHOD_NOT_ALLOWED);
     }

@@ -132,7 +132,7 @@ Renews (last min)：上一分钟内收到的心跳次数。
 
 ###1.Eureka |服务注册中心
 
-#####高可用，可以集群模式部署：Eureka自身可作为一个服务注册到其他注册中心，形成注册中心集群。
+####高可用，可以集群模式部署：Eureka自身可作为一个服务注册到其他注册中心，形成注册中心集群。
 
 实现高可用的服务注册中心以及实现微服务的注册与发现
 
@@ -166,7 +166,7 @@ Renews (last min)：上一分钟内收到的心跳次数。
 
 ### 2.Ribbon|客户端负载均衡
 
-##### 基于HTTP和TCP的客户端负载均衡器，是一个工具类框架，不需要独立部署，几乎集成在SpringCloud组件中。
+####基于HTTP和TCP的客户端负载均衡器，是一个工具类框架，不需要独立部署，几乎集成在SpringCloud组件中。
 
 实现服务间负载均衡的接口调用
 
@@ -177,13 +177,14 @@ Ribbon内置可拔插、可定制的负载均衡策略
 3.RetryRule：使用线性轮询策略获取服务，如果获取失败则在指定时间内重试，重新获取可用服务。
 4.WeightedResponseTimeRule：响应时间作为选取权重的负载均衡策略
 5.BestAvailableRule：继承自ClientConfigEnabledRoundRobinRule。从所有没有断开的服务中，选取到目前为止请求数量最小的服务。
+等等。。。
 ```
 
 
 
 ### 3.Hystrix|断路器
 
-##### 服务降级、服务熔断、请求缓存、请求合并等
+####服务降级、服务熔断、请求缓存、请求合并等
 
 实现线程隔离并进入熔断机制，以免在微服务架构中因个别服务出现异常而引起级联故障蔓延
 
@@ -198,18 +199,117 @@ Ribbon内置可拔插、可定制的负载均衡策略
 
 ### 4.Zuul|网关
 
-##### 请求到后端服务的入口，可以做统一的降级、限流、认证授权、安全
+####请求到后端服务的入口，可以做统一的降级、限流、认证授权、安全
 
 ```
 1.类似nginx的反向代理
-2.默认会以服务名作为ContextPath的方式来创建路由映射
+2.Zuul和Eureka整合之后，它为Eureka中的每一个服务都自动创建一个默认路由规则，这些默认规则的path会使用serviceId配置的服务名作为请求前缀
+3.
 ```
+
+
+
+###### 请求隔离	
+
+```yaml
+#Zuul默认使用信号量来实现隔离，ThreadPool信息会一直处于Loading状态，需要通过Hystrix配置把隔离机制改为线程池的方式才能得以展示。此时execution.isolation.strategy=THREAD这个配置不会生效，需要使用zuul.ribbonIsolationStrategy=THREAD的方式。当 zuul.ribbonIsolationStrategy=THREAD 时，Hystrix的线程隔离策略将会作用于所有路由。且此时HystrixThreadPoolKey 默认为“RibbonCommand”。这意味着，所有路由的HystrixCommand都会在相同的Hystrix线程池中执行。可使用以下配置，让每个路由使用独立的线程池：
+
+zuul:
+  ribbon-isolation-strategy: THREAD #Zuul默认使用信号量来实现隔离, 改为线程池隔离模式
+  threadPool:
+    useSeparateThreadPools: true
+    thread-pool-key-prefix: zuul  #为每个路由的HystrixThreadPoolKey添加前缀
+```
+
+###### 请求路由	
+
+```yaml
+zuul:
+  prefix: /learn 
+  routes:
+    jbusine:
+      path: /busine/**
+      serviceId: jbusine
+      sensitiveHeaders:	#对指定路由的敏感头设置为空
+      stripPrefix: false	#路由时默认会去除前缀,在当前路由设置不去除前缀
+  ignored-services: jarea,jdashboard  #不自动创建默认路由规则,多个逗号隔开
+```
+
+###### 请求过滤	
+
+```java
+@Component
+public class TokenFilter extends ZuulFilter ...
+```
+
+###### Cookie与Header	
+
+```yaml
+#默认情况下，Spring Cloud Zuul在请求路由时，会过滤掉HTTP请求头信息中的一些敏感信息，防止它们被传递到下游的外部服务器。
+
+# 方法一，对指定路由开启自定义敏感头
+zuul:
+	routes:
+		<route>:
+			customSensitiveHeaders: true
+# 方法二，对指定路由的敏感头设置为空
+zuul:
+	routes:
+		<route>:
+			sensitiveHeaders: 
+# 方法三，对特定的某些头信息设置拦截
+#如果项目中引入了Spring Security,Spring Security会自动加上这个配置，默认值为:Pragma,Cache-Control,X-Frame-Options,X-Content-Type-Options,X-XSS-Protection,Expries
+zuul:
+    ignored-headers: Header1,Header2
+```
+
+###### 重定向问题	
+
+```
+#在使用了Shiro、Spring Security等安全框架登录成功后，会重定向到具体的web应用所在的地址，而不是指向api网关地址，就会暴露内部服务的关键信息，这种情况要避免：
+
+zuul:
+	add-host-header: true
+```
+
+###### 匹配规则	
+
+```
+线性匹配，即按照路由匹配规则的存储顺序依次匹配(properties文件中不能保证这个先后顺序，需要用YAML来配置)
+```
+
+###### 服务降级
+
+```java
+@Component
+public class BusineFallback implements FallbackProvider...
+```
+
+
+
+#####过滤器简介
+
+IZuulFilter接口 -> ZuulFilter抽象类 -> Zuul的Filter实现类、自定义Filter实现类
+
+```java
+String filterType();		/* 过滤类型 */
+int filterOrder();			/* 执行顺序 */
+boolean shouldFilter();		/* 执行条件 */
+Object run();				/* 具体操作 */
+```
+
+过滤类型：[pre]请求被路由前生效；[routing]路由请求时生效；[post]在pre或error后生效；[error]请求处理出错时生效。
+执行顺序：int类型数字，数字越小，越先生效。
+执行条件：当前过滤器是否生效，可通过此方法指定过滤器生效范围。
+具体操作：过滤器的具体逻辑，拦截、路由或对请求路由返回的结果做一些处理。
+
+![img](https://img-blog.csdn.net/20180920141204792?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1dZQTE5OTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
 
 
 
 ### 5.Feign|轻便的微服务调用
 
-##### 整合了Spring Cloud Ribbon 和 Spring Cloud Hystrix，微服务接口代理，提供了一种声明式的Web服务客户端定义方式
+####整合了Spring Cloud Ribbon 和 Spring Cloud Hystrix，微服务接口代理，提供了一种声明式的Web服务客户端定义方式
 
 实现服务间负载均衡的接口调用
 
