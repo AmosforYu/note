@@ -14,7 +14,6 @@ zuul:
       serviceId: jbasics
       sensitiveHeaders:
       stripPrefix: false
-      customSensi
   ignored-services: jarea,jdashboard  #不自动创建默认路由规则,多个逗号隔开
   ribbon-isolation-strategy: THREAD #Zuul默认使用信号量来实现隔离, 改为线程池隔离模式
   thread-pool:
