@@ -9,7 +9,6 @@ import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.stereotype.Component;
 
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 
@@ -33,27 +32,25 @@ public class BusineFallback implements FallbackProvider {
     public ClientHttpResponse fallbackResponse(String route, Throwable cause) {
         return new ClientHttpResponse() {
             @Override
-            public HttpStatus getStatusCode() throws IOException {
+            public HttpStatus getStatusCode() {
                 return HttpStatus.OK;
             }
 
             @Override
-            public int getRawStatusCode() throws IOException {
+            public int getRawStatusCode() {
                 return HttpStatus.OK.value();
             }
 
             @Override
-            public String getStatusText() throws IOException {
+            public String getStatusText() {
                 return HttpStatus.OK.getReasonPhrase();
             }
 
             @Override
-            public void close() {
-
-            }
+            public void close() {}
 
             @Override
-            public InputStream getBody() throws IOException {
+            public InputStream getBody() {
                 JSONObject result = new JSONObject();
                 result.put("respCode", "9999");
                 result.put("respMsg", "系统错误，请求失败");

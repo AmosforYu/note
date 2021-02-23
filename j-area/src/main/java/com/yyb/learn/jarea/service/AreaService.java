@@ -28,8 +28,6 @@ public class AreaService {
     @Async("area-executor")
     public void getAreaInfoByPhone(DeferredResult<JSONObject> deferredResult, String phone) {
         try {
-            Thread.sleep(2000);
-
             JSONObject result = getAreaInfoResult(phone);
             deferredResult.setResult(result);
         } catch (Exception e) {
