@@ -14,6 +14,8 @@ public class AreaInfoDto {
     private String provinceCode;
     /*市码*/
     private String cityCode;
+    /*手机运营商*/
+    private String isp;
 
     public String getProvinceName() {
         return provinceName;
@@ -47,6 +49,14 @@ public class AreaInfoDto {
         this.cityCode = cityCode;
     }
 
+    public String getIsp() {
+        return isp;
+    }
+
+    public void setIsp(String isp) {
+        this.isp = isp;
+    }
+
     @Override
     public String toString() {
         return "AreaInfoDto{" +
@@ -54,6 +64,7 @@ public class AreaInfoDto {
                 ", cityName='" + cityName + '\'' +
                 ", provinceCode='" + provinceCode + '\'' +
                 ", cityCode='" + cityCode + '\'' +
+                ", isp='" + isp + '\'' +
                 '}';
     }
 }
