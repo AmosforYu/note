@@ -12,9 +12,9 @@ package com.yyb.learn.jbasics.basic.designpattern;
  * @date 2020/12/17 0017 9:45
  */
 public class D_01CommandPattern {
-    //5.使用命令调用类来[接收]并[执行]命令
+//    //5.使用命令调用类来[接收]并[执行]命令
 //    public static void main(String[] args) {
-//        //命令调用方(被执行者) //CellingLight
+//        //命令(被执行者) //CellingLight
 //        D_02Stock adStock = new D_02Stock("yyb", 33);
 //
 //        //命令集 //LightOnCommand
