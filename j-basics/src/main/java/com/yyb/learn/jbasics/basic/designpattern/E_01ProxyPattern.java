@@ -26,21 +26,21 @@ public class E_01ProxyPattern {
 
         System.out.println(realSubject.getClass());
         //JDK动态代理-代理方
-        E_01Subject subject = (E_01Subject) new E_04JDKProxy(realSubject).getProxyInstance();
-        System.out.println(subject.getClass());
-        subject.request();
+        E_01Subject jdkProxyTarget = (E_01Subject) new E_04JDKProxy(realSubject).getProxyInstance();
+        System.out.println(jdkProxyTarget.getClass());
+        jdkProxyTarget.request();
 
         System.setProperty(DebuggingClassWriter.DEBUG_LOCATION_PROPERTY,
                 "E:\\Program Files\\JAVA\\01myProject\\hy\\j-basics\\src\\main\\java\\com\\yyb\\learn\\jbasics\\basic\\designpattern\\CGLIBProxyClass");
         //CGLIB动态代理
         Enhancer enhancer = new Enhancer();
-        //设置目标类
+        //设置目标类(设置被代理类)
         enhancer.setSuperclass(E_02RealSubject.class);
-        // 设置拦截对象
+        // 设置拦截对象、回调对象
         enhancer.setCallback(new E_05CGLIBProxy());
         // 生成代理类并返回一个实例
-        E_02RealSubject target = (E_02RealSubject) enhancer.create();
-        target.request();
+        E_02RealSubject cglibProxyTarget = (E_02RealSubject) enhancer.create();
+        cglibProxyTarget.request();
     }
 
 }

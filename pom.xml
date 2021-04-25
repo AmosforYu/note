@@ -90,17 +90,19 @@
         <!--公共依赖模块-->
         <module>j-common</module>
 
-        <!--服务注册中心-->
+        <!--服务注册中心 4001 4002-->
         <module>j-server</module>
 
-        <module>j-gateway</module>
+        <module>j-gateway</module><!--3305-->
 
-        <module>j-dashboard</module>
+        <module>j-dashboard</module><!--3304-->
 
         <!--xxxx模块-->
-        <module>j-basics</module>
-        <module>j-area</module>
-        <module>j-busine</module>
+        <module>j-basics</module><!--3301-->
+        <module>j-area</module><!--3303-->
+        <module>j-busine</module><!--3302-->
+        <module>j-timed-task-alone</module>
+        <module>j-timed-task-common</module><!--3306-->
     </modules>
 
 

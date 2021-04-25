@@ -11,11 +11,12 @@ import java.lang.reflect.Method;
  * @date 2021/3/1 0001 17:41
  */
 public class E_05CGLIBProxy implements MethodInterceptor {
+
     @Override
     public Object intercept(Object o, Method method, Object[] objects, MethodProxy methodProxy) throws Throwable {
         System.out.println("pre method for every proxied method");
-        methodProxy.invokeSuper(o, objects);
+        Object o1 = methodProxy.invokeSuper(o, objects);
         System.out.println("after method for every proxied method");
-        return null;
+        return o1;
     }
 }
